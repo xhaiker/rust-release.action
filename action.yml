@@ -1,0 +1,73 @@
+name: 'Rust Build And Release Action'
+description: 'Automate building and publishing rust artifacts'
+author: ihaiker
+branding:
+  icon: 'loader'
+  color: 'green'
+
+inputs:
+  release:
+    description: 'release name (default from release action or tag action)'
+    required: false
+  rust_target:
+    description: 'rust target'
+    required: true
+  src_dir:
+    description: 'Path to directory containing Cargo.toml (defaults to project root)'
+    required: false
+    default: ''
+  pre_build:
+    description: 'Relative path of script to run before building'
+    required: false
+    default: ''
+  post_build:
+    description: 'Relative path of script to run after building'
+    required: false
+    default: ''
+
+  name:
+    description: 'the project name'
+    required: false
+    default: ""
+  archive_name:
+    description: 'The build artifact name (default <name>-<archive_suffix>)'
+    required: false
+  extra_files:
+    description: 'List of extra files to include in build'
+    required: false
+  archive_suffix:
+    description: 'This name is the suffix of the build artifact. (default to rust_target)'
+    required: false
+    default: ""
+  archive_types:
+    description: 'List of archive types to publish the binaries with, default "zip", supports zip and all tar formats'
+    required: false
+    default: 'zip'
+
+  build_options:
+    description: 'rust build opation'
+    required: false
+    default: ''
+  minify:
+    description: "minify file"
+    required: false
+    default: false
+
+runs:
+  using: "composite"
+  steps:
+    - name: build
+      run: ${{ github.action_path }}/action.sh ${{ inputs.build_options }}
+      shell: bash
+      env:
+        RELEASE: "${{ inputs.release }}"
+        RUSTTARGET: "${{ inputs.rust_target }}"
+        SRC_DIR: "${{ inputs.src_dir }}"
+        PRE_BUILD: "${{ inputs.pre_build }}"
+        POST_BUILD: "${{ inputs.post_build }}"
+        NAME: "${{ inputs.name }}"
+        ARCHIVE_NAME: "${{inputs.archive_name}}"
+        EXTRA_FILES: "${{ inputs.extra_files }}"
+        ARCHIVE_SUFFIX: "${{ inputs.archive_suffix }}"
+        ARCHIVE_TYPES: "${{ inputs.archive_types }}"
+        MINIFY: "${{inputs.minify}}"

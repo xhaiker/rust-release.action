@@ -3,58 +3,54 @@
 [![.github/workflows/test.yml](https://github.com/ihaiker/rust-release.action/actions/workflows/test.yaml/badge.svg)](https://github.com/ihaiker/rust-release.action/actions/workflows/test.yaml)
 [![.github/workflows/release.yml](https://github.com/ihaiker/rust-release.action/actions/workflows/release.yaml/badge.svg)](https://github.com/ihaiker/rust-release.action/actions/workflows/release.yaml)
 
-[中文文档](./README_zh.md)
+[English Documents](./README.md)
 
-Automate publishing Rust build artifacts for GitHub releases through GitHub Actions.
+自动发布Rust构建知道到Github release。此action可以直接release、tag和指定release三种模式。
 
-This action can work under the conditions of creating release, pushing tag and specifying release.
-
-## Inputs
+## Inputs 输入参数
 
 ### release
-Github release name (default from release action or tag action)
-Can not be specified, if you used  release/tag action.
+指定制品上传release，默认情况下可以从release模式的获取，或者从tag模式获取相应的release name.
 
 ### rust_target
-**Required** rust target.
-now only support
+**Required** rust target
+现在仅仅支持：
 
 - x86_64_apple-darwin
 - x86_64-pc-windows-gnu
 - x86_64-unknown-linux-gnu
 
 ### src_dir
-Path to directory containing Cargo.toml (defaults to project root)
+源文件路径，该路径下必须包含Cargo.toml文件。（默认情况为当前项目根目录）
 
 ### pre_build
-Relative path of script to run before building
+构建前需要执行的脚本
 
 ### post_build
-Relative path of script to run after building
+构建后需要执行的脚本
 
 ### name
-the project name (default repository name)
+项目名称，默认为github repository name.
 
 ### archive_name
-
-The build artifact name (default `<name>`-`<archive_suffix>`)
+release 制品名称，默认为：`<name>`-`<archive_suffix>`
 
 ### extra_files
-List of extra files to include in build
+制品打包需要额外打入的文件列表
 Example: README.md LISENSE
 
 ### archive_suffix
-This name is the suffix of the build artifact. (default to rust_target)
+制品文件名后半截，例如可以使用 `derawin-x86_64` 替换 `x86_64_apple-darwin`),默认为 `rust_target`
 
 ### archive_types
-List of archive types to publish the binaries with, default "zip", supports zip and all tar formats
+制品文件压缩类型，默认: `zip`, 支持tar的所有压缩类型
 
 ### build_options
-`cargo build` options, more info see `cargo build --help`
+`cargo build` 额外构建参数
 
-## Example usage
+## 简单示例
 
-### On **release** the project
+### **release** 模式示例
 
 ```yaml
 name: release
@@ -94,7 +90,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-### On **tag** the project
+### **tag** 模式
 
 ```yaml
 name: release
