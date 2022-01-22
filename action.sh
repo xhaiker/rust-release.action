@@ -2,7 +2,7 @@
 set -ex
 
 export BASE_PATH="$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )"
-export BUILD_IMAGE="xhaiker/rust-release.action:v1.0.0"
+export BUILD_IMAGE="xhaiker/rust-release.action:v1.0.2"
 
 info() {
   echo "::info $*" >&2
@@ -20,9 +20,9 @@ crash() {
 if [ "$RELEASE" == "" ]; then
   info "release name not found"
   if [ "$GITHUB_EVENT_NAME" == "release" ]; then
-    RELEASE="$GITHUB_REF"
+    RELEASE="$(cat "$GITHUB_EVENT_PATH" | jq -r .release.tag_name)"
   elif [ "$GITHUB_EVENT_NAME" == "push" ] && [ "$GITHUB_REF_TYPE" == "tag" ]; then
-    RELEASE="$GITHUB_REF"
+    RELEASE="$GITHUB_REF_NAME"
   else
     crash "not found release"
   fi

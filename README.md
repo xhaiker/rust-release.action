@@ -144,7 +144,7 @@ jobs:
       - uses: xhaiker/rust-release.action@v1.0.0
         name: build ${{ matrix.name }}
         with:
-          release: ${{ github.ref }}
+          release: ${{ github.ref_name }}
           rust_target: ${{ matrix.target }}
           archive_suffix: ${{ matrix.suffix }}
           archive_types: ${{ matrix.archive }}
