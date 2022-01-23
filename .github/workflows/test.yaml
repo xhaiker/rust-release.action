@@ -97,7 +97,7 @@ jobs:
           name: ${{ env.TEST_TAG }}
           archive_suffix: ${{ matrix.name }}
           archive_types: ${{ matrix.archive }}
-          extra_files: "etc/log4rs.yaml etc/idgend.yaml README.md README_ZH.md LICENSE"
+          extra_files: "etc/log4rs.yaml etc/idgener.yaml README.md README_ZH.md LICENSE"
           minify: true
 
   clean:

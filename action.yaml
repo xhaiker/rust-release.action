@@ -1,5 +1,5 @@
-name: 'Rust Build And Release Action'
-description: 'Automate building and publishing rust artifacts'
+name: 'Tag And Release Rust binary'
+description: 'Automate building and publishing rust artifacts, support github action release or tag'
 author: ihaiker
 branding:
   icon: 'loader'
