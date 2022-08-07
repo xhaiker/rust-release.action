@@ -73,7 +73,7 @@ jobs:
           - target: x86_64-pc-windows-gnu
             suffix: windows-x86_64
             archive: zip
-          - target: x86_64-unknown-linux-gun
+          - target: x86_64-unknown-linux-gnu
             suffix: linux-x86_64
             archive: tar.xz
           - target: x86_64-apple-darwin
@@ -131,7 +131,7 @@ jobs:
           - target: x86_64-pc-windows-gnu
             suffix: windows-x86_64
             archive: zip
-          - target: x86_64-unknown-linux-gun
+          - target: x86_64-unknown-linux-gnu
             suffix: linux-x86_64
             archive: tar.xz
           - target: x86_64-apple-darwin
