@@ -1,5 +1,5 @@
-FROM ubuntu:20.04
-MAINTAINER haiker <ni@renzhen.la>
+FROM ubuntu:22.04
+LABEL maintainer="haiker <ni@renzhen.la>"
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get upgrade -y && \
