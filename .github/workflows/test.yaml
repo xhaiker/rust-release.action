@@ -57,7 +57,7 @@ jobs:
           - target: x86_64-pc-windows-gnu
             name: windows-x86_64
             archive: zip
-          - target: x86_64-unknown-linux-gun
+          - target: x86_64-unknown-linux-gnu
             name: linux-x86_64
             archive: tar.gz tar.xz
           - target: x86_64-apple-darwin

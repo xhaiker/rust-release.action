@@ -5,14 +5,16 @@
 
 [English Documents](./README.md)
 
-自动发布Rust构建知道到Github release。此action可以直接release、tag和指定release三种模式。
+自动发布 Rust 构建知道到 Github release。此 action 可以直接 release、tag 和指定 release 三种模式。
 
 ## Inputs 输入参数
 
 ### release
-指定制品上传release，默认情况下可以从release模式的获取，或者从tag模式获取相应的release name.
+
+指定制品上传 release，默认情况下可以从 release 模式的获取，或者从 tag 模式获取相应的 release name.
 
 ### rust_target
+
 **Required** rust target
 现在仅仅支持：
 
@@ -21,31 +23,40 @@
 - x86_64-unknown-linux-gnu
 
 ### src_dir
-源文件路径，该路径下必须包含Cargo.toml文件。（默认情况为当前项目根目录）
+
+源文件路径，该路径下必须包含 Cargo.toml 文件。（默认情况为当前项目根目录）
 
 ### pre_build
+
 构建前需要执行的脚本
 
 ### post_build
+
 构建后需要执行的脚本
 
 ### name
-项目名称，默认为github repository name.
+
+项目名称，默认为 github repository name.
 
 ### archive_name
+
 release 制品名称，默认为：`<name>`-`<archive_suffix>`
 
 ### extra_files
+
 制品打包需要额外打入的文件列表
 Example: README.md LISENSE
 
 ### archive_suffix
+
 制品文件名后半截，例如可以使用 `derawin-x86_64` 替换 `x86_64_apple-darwin`),默认为 `rust_target`
 
 ### archive_types
-制品文件压缩类型，默认: `zip`, 支持tar的所有压缩类型
+
+制品文件压缩类型，默认: `zip`, 支持 tar 的所有压缩类型
 
 ### build_options
+
 `cargo build` 额外构建参数
 
 ## 简单示例
@@ -69,7 +80,7 @@ jobs:
           - target: x86_64-pc-windows-gnu
             suffix: windows-x86_64
             archive: zip
-          - target: x86_64-unknown-linux-gun
+          - target: x86_64-unknown-linux-gnu
             suffix: linux-x86_64
             archive: tar.xz
           - target: x86_64-apple-darwin
@@ -97,7 +108,7 @@ name: release
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
   release:
@@ -127,7 +138,7 @@ jobs:
           - target: x86_64-pc-windows-gnu
             suffix: windows-x86_64
             archive: zip
-          - target: x86_64-unknown-linux-gun
+          - target: x86_64-unknown-linux-gnu
             suffix: linux-x86_64
             archive: tar.xz
           - target: x86_64-apple-darwin
@@ -147,5 +158,4 @@ jobs:
           extra_files: "README.md README_zh.md LICENSE"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 ```

@@ -80,7 +80,7 @@ fi
 
 BINARIES="$(docker_run 'cargo read-manifest | jq -r ".targets[] | select(.kind[] | contains(\"bin\")) | .name"')"
 TARGET_BIN_PATH="target/$RUSTTARGET/release"
-if [ "$RUSTTARGET" == "x86_64-unknown-linux-gun" ]; then
+if [ "$RUSTTARGET" == "x86_64-unknown-linux-gnu" ]; then
   TARGET_BIN_PATH="target/release"
 fi
 
