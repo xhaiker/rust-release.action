@@ -1,4 +1,14 @@
 #!/usr/bin/env bash
+###
+ # @Author: rootphantomer rootphantomy@gmail.com
+ # @Date: 2022-10-18 17:09:37
+ # @LastEditors: rootphantomer
+ # @LastEditTime: 2023-04-03 17:18:55
+ # @FilePath: /rust-release.action/docker/entrypoint.sh
+ # @Description: 
+ # 
+ # Copyright (c) 2023 by ${git_name}, All Rights Reserved. 
+### 
 set -ex
 
 info() {
@@ -35,9 +45,11 @@ popd
 
 pushd /build/$SRC_DIR
   if [ "$RUSTTARGET" == "x86_64-unknown-linux-gnu" ]; then
+    cargo update
     cargo build --bins --release $@
   else
     rustup target add "$RUSTTARGET" >&2
+    cargo update
     cargo build --bins --release --target $RUSTTARGET $@
   fi
 popd
