@@ -2,7 +2,7 @@
 set -ex
 
 export BASE_PATH="$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )"
-export BUILD_IMAGE="xhaiker/rust-release.action:v1.0.2"
+export BUILD_IMAGE="xhaiker/rust-release.action:latest"
 
 info() {
   echo "::info $*" >&2
