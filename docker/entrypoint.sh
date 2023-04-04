@@ -1,14 +1,5 @@
 #!/usr/bin/env bash
-###
- # @Author: rootphantomer rootphantomy@gmail.com
- # @Date: 2022-10-18 17:09:37
- # @LastEditors: rootphantomer
- # @LastEditTime: 2023-04-03 17:18:55
- # @FilePath: /rust-release.action/docker/entrypoint.sh
- # @Description: 
- # 
- # Copyright (c) 2023 by ${git_name}, All Rights Reserved. 
-### 
+
 set -ex
 
 info() {
