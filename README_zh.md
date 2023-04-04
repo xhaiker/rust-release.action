@@ -80,12 +80,15 @@ jobs:
           - target: x86_64-pc-windows-gnu
             suffix: windows-x86_64
             archive: zip
+            name: x86_64-pc-windows-gnu
           - target: x86_64-unknown-linux-gnu
             suffix: linux-x86_64
             archive: tar.xz
+            name: x86_64-unknown-linux-gnu
           - target: x86_64-apple-darwin
             suffix: darwin-x86_64
             archive: tar.gz
+            name: x86_64-apple-darwin
     runs-on: ubuntu-latest
     steps:
       - name: Clone test repository
