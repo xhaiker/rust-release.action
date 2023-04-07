@@ -12,10 +12,12 @@ This action can work under the conditions of creating release, pushing tag and s
 ## Inputs
 
 ### release
+
 Github release name (default from release action or tag action)
-Can not be specified, if you used  release/tag action.
+Can not be specified, if you used release/tag action.
 
 ### rust_target
+
 **Required** rust target.
 now only support
 
@@ -24,15 +26,19 @@ now only support
 - x86_64-unknown-linux-gnu
 
 ### src_dir
+
 Path to directory containing Cargo.toml (defaults to project root)
 
 ### pre_build
+
 Relative path of script to run before building
 
 ### post_build
+
 Relative path of script to run after building
 
 ### name
+
 the project name (default repository name)
 
 ### archive_name
@@ -40,16 +46,20 @@ the project name (default repository name)
 The build artifact name (default `<name>`-`<archive_suffix>`)
 
 ### extra_files
+
 List of extra files to include in build
 Example: README.md LISENSE
 
 ### archive_suffix
+
 This name is the suffix of the build artifact. (default to rust_target)
 
 ### archive_types
+
 List of archive types to publish the binaries with, default "zip", supports zip and all tar formats
 
 ### build_options
+
 `cargo build` options, more info see `cargo build --help`
 
 ## Example usage
@@ -73,12 +83,15 @@ jobs:
           - target: x86_64-pc-windows-gnu
             suffix: windows-x86_64
             archive: zip
+            name: x86_64-pc-windows-gnu
           - target: x86_64-unknown-linux-gnu
             suffix: linux-x86_64
             archive: tar.xz
+            name: x86_64-unknown-linux-gnu
           - target: x86_64-apple-darwin
             suffix: darwin-x86_64
             archive: tar.gz
+            name: x86_64-apple-darwin
     runs-on: ubuntu-latest
     steps:
       - name: Clone test repository
@@ -101,7 +114,7 @@ name: release
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
   release:
@@ -131,12 +144,15 @@ jobs:
           - target: x86_64-pc-windows-gnu
             suffix: windows-x86_64
             archive: zip
+            name: x86_64-pc-windows-gnu
           - target: x86_64-unknown-linux-gnu
             suffix: linux-x86_64
             archive: tar.xz
+            name: x86_64-unknown-linux-gnu
           - target: x86_64-apple-darwin
             suffix: darwin-x86_64
             archive: tar.gz
+            name: x86_64-apple-darwin
     runs-on: ubuntu-latest
     steps:
       - name: Clone test repository
@@ -151,5 +167,4 @@ jobs:
           extra_files: "README.md README_zh.md LICENSE"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 ```
